@@ -10,6 +10,8 @@ import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport._
 import spray.json.JsArray
 import scala.collection.JavaConverters._
 import spray.json.{JsArray, pimpAny, DefaultJsonProtocol}
+import spray.json.DefaultJsonProtocol._
+
 
 /**
   * Created by madhu on 8/11/15.
@@ -33,7 +35,7 @@ trait RestService {
          } ~
            get {
               complete {
-                JsArray(list.asScala.toList.map(_.toJson):_*)
+                list.asScala
               }
            }
       }

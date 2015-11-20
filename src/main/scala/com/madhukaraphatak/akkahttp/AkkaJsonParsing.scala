@@ -4,11 +4,11 @@ import java.util.concurrent.ConcurrentLinkedDeque
 
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
-import akka.stream.ActorMaterializer
-import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport._
-import com.madhukaraphatak.akkahttp.Models.{ServiceJsonProtoocol, Customer}
-import spray.json.{JsArray, pimpAny, DefaultJsonProtocol}
+import akka.http.scaladsl.server.Directives._
+import akka.stream.ActorMaterializer
+import com.madhukaraphatak.akkahttp.Models.{Customer, ServiceJsonProtoocol}
+import spray.json.DefaultJsonProtocol._
 import scala.collection.JavaConverters._
 
 /**
@@ -39,7 +39,7 @@ object AkkaJsonParsing {
         } ~
           get {
             complete {
-              JsArray(list.asScala.toList.map(_.toJson):_*)
+              list.asScala
             }
           }
       }
